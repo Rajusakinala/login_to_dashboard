@@ -19,7 +19,9 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
   ];
 
   const loginHandler = (obj) => {
-    const returnedObj = dataBase.find((person) => person.email === obj?.email);
+    const returnedObj = dataBase.find(
+      (person) => person.email.toLowerCase() === obj?.email.toLowerCase()
+    );
     if (returnedObj) {
       console.log("email exist");
       if (obj.password === returnedObj.password) {
