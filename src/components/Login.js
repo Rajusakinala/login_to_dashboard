@@ -112,9 +112,30 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
             variant="contained"
             onClick={() => {
               //   signUpHandler();
+              setSnakbarOpen(true);
+              setSnakbarObj({
+                msg: "Sign up feature in Progress",
+                severity: "success",
+              });
             }}
           >
             Sign UP
+          </Button>
+        </Grid>
+
+        <Grid item justifyContent={"start"}>
+          <Button
+            sx={{ m: 1 }}
+            onClick={() => {
+              //   forgotPasswordHandler();
+              setSnakbarOpen(true);
+              setSnakbarObj({
+                msg: "Forgot password feature in Progress",
+                severity: "success",
+              });
+            }}
+          >
+            forget Password
           </Button>
         </Grid>
       </Grid>
