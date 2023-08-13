@@ -90,6 +90,7 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
             required
             id="password"
             label="Password"
+            type="password"
             variant="outlined"
             // helperText="password is required filed"
             onChange={(e) => {
