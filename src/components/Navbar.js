@@ -1,5 +1,5 @@
-import { Grid, Snackbar } from "@mui/material";
-import React from "react";
+import { Drawer, Grid, Snackbar } from "@mui/material";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,6 +15,7 @@ import MuiAlert from "@mui/material/Alert";
 const Navbar = ({ setIsLoggedIn }) => {
   const [snakbarOpen, setSnakbarOpen] = React.useState(true);
   const [logOutDiaBoxOpen, setLogOutDiaBoxOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -22,9 +23,11 @@ const Navbar = ({ setIsLoggedIn }) => {
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
+      setDrawerOpen(false);
       return;
     }
     setSnakbarOpen(false);
+    setDrawerOpen(false);
   };
 
   return (
@@ -36,6 +39,9 @@ const Navbar = ({ setIsLoggedIn }) => {
           <Toolbar>
             <IconButton
               //   size="large"
+              onClick={() => {
+                setDrawerOpen(true);
+              }}
               edge="start"
               color="inherit"
               aria-label="menu"
@@ -101,22 +107,21 @@ const Navbar = ({ setIsLoggedIn }) => {
           onClose={handleClose}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
         >
-          <Alert
-            // onClose={() => setSnakbarOpen(false)}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
+          <Alert severity="success" sx={{ width: "100%" }}>
             Your successfully logged IN
           </Alert>
         </Snackbar>
       </div>
 
-      {/* <Grid container spacing={1}>
-        <Grid item>option 1</Grid>
-        <Grid item>option 2</Grid>
-        <Grid item>option 3</Grid>
-        <Grid item>option 4</Grid>
-      </Grid> */}
+      <div>
+        <Drawer anchor={"left"} open={drawerOpen} onClose={handleClose}>
+          <div style={{ width: "200px" }}>
+            <h2>one</h2>
+            <h2>two</h2>
+            <h2>three</h2>
+          </div>
+        </Drawer>
+      </div>
     </div>
   );
 };
