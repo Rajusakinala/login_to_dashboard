@@ -4,7 +4,7 @@ import Dashborad from "./components/Dashborad";
 import { useState } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [loggedDetails, setLoggedDetails] = useState({});
   return (
     <div className="App">
