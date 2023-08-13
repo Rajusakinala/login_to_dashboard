@@ -5,11 +5,11 @@ import Dashborad from "./components/Dashborad";
 import { useState } from "react";
 
 function App() {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
-      {!isLoggedIn && <Login setisLoggedIn={setisLoggedIn} />}
-      {isLoggedIn && <Dashborad setisLoggedIn={setisLoggedIn} />}
+      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} />}
+      {isLoggedIn && <Dashborad setIsLoggedIn={setIsLoggedIn} />}
     </div>
   );
 }

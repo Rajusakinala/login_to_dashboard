@@ -1,17 +1,12 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const Login = ({ setisLoggedIn }) => {
+const Login = ({ setIsLoggedIn }) => {
   return (
     <div>
       <div>Login page</div>
       <div>
-        <Button
-          variant="contained"
-          onClick={() => {
-            setisLoggedIn(true);
-          }}
-        >
+        <Button variant="contained" onClick={() => setIsLoggedIn(true)}>
           login
         </Button>
       </div>
