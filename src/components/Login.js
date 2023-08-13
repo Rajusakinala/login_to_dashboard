@@ -1,8 +1,18 @@
-import { Button, Grid, Input, FormLabel, TextField } from "@mui/material";
+import { Button, Grid, TextField, Snackbar } from "@mui/material";
 import React, { useState } from "react";
+import MuiAlert from "@mui/material/Alert";
 
 const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
   const [formData, setFormData] = useState({});
+  const [snakbarOpen, setSnakbarOpen] = React.useState(false);
+  const [snakbarObj, setSnakbarObj] = React.useState({
+    msg: "",
+    severity: "error",
+  });
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
   const dataBase = [
     { name: "Raju", email: "raju@gmail.com", password: "raju" },
     { name: "Siri", email: "siri@gmail.com", password: "siri123" },
@@ -13,23 +23,46 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
     if (returnedObj) {
       console.log("email exist");
       if (obj.password === returnedObj.password) {
-        console.log("Password MATCHED");
         setIsLoggedIn(true);
         const ObjWithoutPassword = {};
         Object.assign(ObjWithoutPassword, returnedObj);
         delete ObjWithoutPassword.password;
-
         setLoggedDetails(ObjWithoutPassword);
       } else {
-        console.log("Password not MATCHED");
+        setSnakbarOpen(true);
+        setSnakbarObj({
+          msg: "email exist, But Password not MATCHED",
+          severity: "info",
+        });
       }
     } else {
-      console.log("email not exist");
+      setSnakbarOpen(true);
+      setSnakbarObj({ msg: "email not exist", severity: "error" });
     }
   };
   return (
     <div>
-      <div>Login page</div>
+      <div>Sign In page</div>
+
+      <Snackbar
+        open={snakbarOpen}
+        autoHideDuration={5000}
+        onClose={(event, reason) => {
+          if (reason === "clickaway") {
+            return;
+          }
+          setSnakbarOpen(false);
+        }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert
+          onClose={() => setSnakbarOpen(false)}
+          severity={snakbarObj?.severity}
+          sx={{ width: "100%" }}
+        >
+          {snakbarObj?.msg}
+        </Alert>
+      </Snackbar>
 
       <Grid
         container
@@ -39,9 +72,11 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
       >
         <Grid item>
           <TextField
+            required
             id="email"
             label="Email"
             variant="outlined"
+            // helperText="email is required filed"
             onChange={(e) => {
               formData[e.target.id] = e.target.value;
               setFormData(formData);
@@ -50,9 +85,11 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
         </Grid>
         <Grid item>
           <TextField
+            required
             id="password"
             label="Password"
             variant="outlined"
+            // helperText="password is required filed"
             onChange={(e) => {
               formData[e.target.id] = e.target.value;
               setFormData(formData);
@@ -68,7 +105,7 @@ const Login = ({ setIsLoggedIn, setLoggedDetails }) => {
               loginHandler(formData);
             }}
           >
-            login
+            Sign IN
           </Button>
           <Button
             sx={{ m: 1 }}
