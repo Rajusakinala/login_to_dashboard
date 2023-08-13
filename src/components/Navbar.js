@@ -15,7 +15,7 @@ import MuiAlert from "@mui/material/Alert";
 const Navbar = ({ setIsLoggedIn }) => {
   const [snakbarOpen, setSnakbarOpen] = React.useState(true);
   const [logOutDiaBoxOpen, setLogOutDiaBoxOpen] = React.useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
