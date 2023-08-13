@@ -6,10 +6,21 @@ import { useState } from "react";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedDetails, setLoggedDetails] = useState({});
   return (
     <div className="App">
-      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} />}
-      {isLoggedIn && <Dashborad setIsLoggedIn={setIsLoggedIn} />}
+      {!isLoggedIn && (
+        <Login
+          setIsLoggedIn={setIsLoggedIn}
+          setLoggedDetails={setLoggedDetails}
+        />
+      )}
+      {isLoggedIn && (
+        <Dashborad
+          setIsLoggedIn={setIsLoggedIn}
+          loggedDetails={loggedDetails}
+        />
+      )}
     </div>
   );
 }

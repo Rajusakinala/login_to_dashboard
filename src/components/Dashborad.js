@@ -5,7 +5,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import MuiAlert from "@mui/material/Alert";
 
-const Dashborad = ({ setIsLoggedIn }) => {
+const Dashborad = ({ setIsLoggedIn, loggedDetails }) => {
   const [snakbarOpen, setSnakbarOpen] = React.useState(true);
   const [logOutDiaBoxOpen, setLogOutDiaBoxOpen] = React.useState(false);
 
@@ -23,6 +23,7 @@ const Dashborad = ({ setIsLoggedIn }) => {
   return (
     <div>
       <div>Dash board page</div>
+      <div>{loggedDetails?.name}</div>
       <div>
         <Button variant="outlined" onClick={() => setLogOutDiaBoxOpen(true)}>
           Log out
